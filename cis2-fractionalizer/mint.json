@@ -1,17 +1,22 @@
 {
 	"owner": {
-		"Account": ["48x2Uo8xCMMxwGuSQnwbqjzKtVqK5MaUud4vG7QEUgDmYkV85e"]
+		"Account": [
+			"3AiAikC2v4H3Rv4L58oHvdX5N8LJoarsQwN3G7oNS7BoFsmt7N"
+		]
 	},
 	"tokens": [
 		[
-			"01",
+			"98",
 			{
 				"metadata": {
-					"url": "https://ipfs.io/ipfs/QmV5REE3HJRLTHdmqG18Wc5PBF3Nc9W5dQL4Rp7MxBsx8q?filename=nft.jpg",
-					"hash": "db2ca420a0090593ac6559ff2a98ce30abfe665d7a18ff3c63883e8b98622a73"
+					"url": "https://gateway.pinata.cloud/ipfs/QmbtMpT7c3hiRAA62q72M3s6cUdAGxgvMQJVQAYGDxcM7p",
+					"hash": ""
 				},
-				"amount": "100",
-				"contract": { "index": 2164, "subindex": 0 },
+				"amount": "1000",
+				"contract": {
+					"index": 3135,
+					"subindex": 0
+				},
 				"token_id": "01"
 			}
 		]

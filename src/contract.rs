@@ -23,7 +23,7 @@ fn contract_init<S: HasStateApi>(
     Ok(State::empty(state_builder))
 }
 
-/// View function forcf testing. This reports on the entire state of the contract
+/// View function for testing. This reports on the entire state of the contract
 /// for testing purposes. In a realistic example there `balance_of` and similar
 /// functions with a smaller response.
 #[receive(
@@ -109,6 +109,14 @@ fn contract_mint<S: HasStateApi>(
         ensure!(
             state.has_collateral(&token_info.contract, &token_info.token_id, &sender),
             concordium_cis2::Cis2Error::Custom(CustomContractError::InvalidCollateral)
+        );
+
+        // create a fraction only for once for that token
+        ensure!(
+            state
+                .has_fraction(&token_info.contract, &token_info.token_id, &sender)
+                .is_none(),
+            concordium_cis2::Cis2Error::Custom(CustomContractError::AlreadyCollateralized)
         );
 
         // Mint the token in the state.
@@ -197,7 +205,8 @@ fn contract_transfer<S: HasStateApi>(
         if to.address().matches_contract(&ctx.self_address()) {
             // tokens are being transferred to self
             // burn the tokens
-            let remaining_amount: ContractTokenAmount = state.burn(&token_id, amount, &from)?;
+            state.burn(&token_id, amount, &from)?;
+            let remaining_amount: ContractTokenAmount = state.get_supply(&token_id);
 
             // log burn event
             logger.log(&Cis2Event::Burn(BurnEvent {

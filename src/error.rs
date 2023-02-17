@@ -23,6 +23,7 @@ pub enum CustomContractError {
     InvokeContractError,
     TokenAlreadyMinted,
     InvalidCollateral,
+    AlreadyCollateralized,
     NoBalanceToBurn,
     AccountsOnly,
     Cis2ClientError(Cis2ClientError),
